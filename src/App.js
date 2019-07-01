@@ -1,6 +1,7 @@
 import React, { Component} from 'react';
 import atla from './atla.png';
 import './App.css';
+import Generator from './Components/Generator'
 
 class App extends Component {
 
@@ -11,9 +12,9 @@ class App extends Component {
       <header className="App-header">
         <img src={atla} alt="logo" />
         <p>
-          Guess Who? - Yip Yip edition
+          Alternate ATLA Generator - JK edition
         </p>
-        
+        <Generator></Generator>
       </header>
     </div>
   );
