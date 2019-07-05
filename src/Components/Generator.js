@@ -168,7 +168,7 @@ class Generator extends Component {
               Want an alternate ATLA plot point?
             </Typography>
             <Button onClick={(ev) => this.handleSubmit(ev)}>
-              Generate!
+              Generate one!
             </Button>
           </Paper>
         )
