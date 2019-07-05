@@ -157,6 +157,9 @@ class Generator extends Component {
             <Typography className="content">
               {this.state.message}
             </Typography>
+            <Button onClick={(ev) => this.handleSubmit(ev)}>
+              Generate another!
+            </Button>
           </CardContent>
 
       </Card> ) : (
