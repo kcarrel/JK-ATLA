@@ -8,11 +8,11 @@ import Card from '@material-ui/core/Card';
 
 import atla from '../atla.png';
 
+let celeb = ['Lizzo', 'Brittany Howard', 'Florence Welch', 'Bono', 'Elton John', 'Lady Gaga', 'Bon Iver', 'Lana Del Rey', 'Billie Eilish']
 let villian = ['Fire Lord Ozai', 'Zaheer', 'Vaatu', 'Azula', 'Admiral Zhao']
 let bending = ['airbending', 'waterbending', 'firebending', 'earthbending', 'bloodbending']
-let bended = ['airbended', 'waterbended', 'firebended', 'earthbended', 'bloodbended']
-let item = ['poop', '']
-let celebrity = ['']
+let bend = ['airbend', 'waterbend', 'firebend', 'earthbend', 'bloodbend', 'metalbend']
+let item = ['poop', 'trash', 'waste', 'food scraps']
 let categories = ['fetchBirth', 'fetchLovers', 'fetchGeneral', 'fetchLake']
 let messages = []
 let sign = ['Sagittaruis', 'Pisces', 'Capricorn', 'Aquarius', 'Scorpio', 'Libra', 'Cancer', 'Aries', 'Virgo', 'Leo', 'Gemini', 'Taurus']
@@ -22,13 +22,12 @@ class Generator extends Component {
     this.state = {
       generated: false,
       message: '',
-      category: ''
     }
   }
 
   handleSubmit = (ev) => {
     ev.preventDefault()
-    let rand = [Math.floor(Math.random() * 5)]
+    let rand = [Math.floor(Math.random() * 8)]
     if (rand == 0) {
       this.fetchBirth()
     } else if (rand == 1) {
@@ -37,6 +36,12 @@ class Generator extends Component {
       this.fetchGeneral()
     } else if (rand == 3) {
       this.fetchVillian()
+    } else if (rand == 4) {
+      this.fetchRecess()
+    } else if (rand == 5) {
+      this.fetchSinger()
+    } else if (rand == 6) {
+      this.fetchAction()
     } else {
       this.fetchLake()
     }
@@ -48,6 +53,15 @@ class Generator extends Component {
     })
   }
 
+  fetchAction() {
+    let rand = [Math.floor(Math.random() * 6)]
+    let rands = [Math.floor(Math.random() * 2)]
+    this.setState ({
+        message: `In ${[Math.floor(Math.random() * 101)]} AG people would ${bend[rand]} ${item[rands]} away.`,
+        generated: true
+    })
+
+  }
   fetchLovers = (ev) => {
     fetch('https://last-airbender-api.herokuapp.com/api/v1/characters/random?count=2')
     .then(resp => resp.json())
@@ -59,10 +73,18 @@ class Generator extends Component {
     })
   }
 
-  fetchVillian= (ev) => {
+  fetchRecess = (ev) => {
+    let rand = [Math.floor(Math.random() * 6)]
+    this.setState ({
+        message: `Being unable to ${bend[rand]} is due to a recessive gene.`,
+        generated: true
+    })
+  }
+
+  fetchVillian = (ev) => {
     let rand = [Math.floor(Math.random() * 5)]
     this.setState ({
-        message: `${villian[rand]} is nowhere near as bad as Trump.`,
+        message: `How horrible. ${villian[rand]} is nowhere near as bad as Trump.`,
         generated: true
     })
   }
@@ -74,6 +96,18 @@ class Generator extends Component {
     .then(char => {
       this.setState ({
         message: `${char[0].name} was born in ${[Math.floor(Math.random() * 101)]} AG and is SUCH a ${sign[Math.floor(Math.random() * 12)]}.`,
+        generated: true
+      })
+    })
+  }
+
+  fetchSinger = (ev) => {
+    let rand = [Math.floor(Math.random() * 10)]
+    fetch('https://last-airbender-api.herokuapp.com/api/v1/characters/random')
+    .then(resp => resp.json())
+    .then(char => {
+      this.setState ({
+        message: `${char[0].name} has a lovely singing voice - sounds quite a bit like ${celeb[rand]}.`,
         generated: true
       })
     })
