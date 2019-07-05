@@ -10,10 +10,9 @@ import atla from '../atla.png';
 
 let bending = ['airbending', 'waterbending', 'firebending', 'earthbending', 'bloodbending']
 let bended = ['airbended', 'waterbended', 'firebended', 'earthbended', 'bloodbended']
-let woke = ['WOC', 'POC', 'gay', 'queer']
 let item = ['poop', '']
 let celebrity = ['']
-let categories = ['fetchBirth', 'fetchLovers', 'fetchWoke', 'fetchGeneral']
+let categories = ['fetchBirth', 'fetchLovers', 'fetchGeneral']
 let messages = []
 let sign = ['Sagittaruis', 'Pisces', 'Capricorn', 'Aquarius', 'Scorpio', 'Libra', 'Cancer', 'Aries', 'Virgo', 'Leo', 'Gemini', 'Taurus']
 class Generator extends Component {
@@ -33,8 +32,6 @@ class Generator extends Component {
       this.fetchBirth()
     } else if (rand == 1) {
       this.fetchLovers()
-    } else if (rand == 2) {
-      this.fetchWoke()
     } else {
       this.fetchGeneral()
     }
@@ -55,25 +52,28 @@ class Generator extends Component {
         generated: true
       })
     })
-    console.log("I'm lover")
   }
-   fetchWoke = (ev) => {
-     console.log("i'm woke")
-   }
 
   fetchBirth = (ev) => {
     fetch('https://last-airbender-api.herokuapp.com/api/v1/characters/random')
     .then(resp => resp.json())
     .then(char => {
       this.setState ({
-        message: `${char[0].name} was born in ${[Math.floor(Math.random() * 101)]} AG and is SUCH a ${sign[Math.floor(Math.random() * 13)]}.`
+        message: `${char[0].name} was born in ${[Math.floor(Math.random() * 101)]} AG and is SUCH a ${sign[Math.floor(Math.random() * 13)]}.`,
+        generated: true
       })
     })
-    console.log("i'm birth")
   }
 
   fetchGeneral() {
-    console.log("im general")
+    fetch('https://last-airbender-api.herokuapp.com/api/v1/characters/random')
+    .then(resp => resp.json())
+    .then(char => {
+      this.setState ({
+        message: `${char[0].name} does not think cactus juice is remotely good.`,
+        generated: true
+      })
+    })
   }
 
   render() {
