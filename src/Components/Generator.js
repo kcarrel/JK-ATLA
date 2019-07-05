@@ -8,11 +8,12 @@ import Card from '@material-ui/core/Card';
 
 import atla from '../atla.png';
 
+let villian = ['Fire Lord Ozai', 'Zaheer', 'Vaatu', 'Azula', 'Admiral Zhao']
 let bending = ['airbending', 'waterbending', 'firebending', 'earthbending', 'bloodbending']
 let bended = ['airbended', 'waterbended', 'firebended', 'earthbended', 'bloodbended']
 let item = ['poop', '']
 let celebrity = ['']
-let categories = ['fetchBirth', 'fetchLovers', 'fetchGeneral']
+let categories = ['fetchBirth', 'fetchLovers', 'fetchGeneral', 'fetchLake']
 let messages = []
 let sign = ['Sagittaruis', 'Pisces', 'Capricorn', 'Aquarius', 'Scorpio', 'Libra', 'Cancer', 'Aries', 'Virgo', 'Leo', 'Gemini', 'Taurus']
 class Generator extends Component {
@@ -27,13 +28,17 @@ class Generator extends Component {
 
   handleSubmit = (ev) => {
     ev.preventDefault()
-    let rand = [Math.floor(Math.random() * 4)]
+    let rand = [Math.floor(Math.random() * 5)]
     if (rand == 0) {
       this.fetchBirth()
     } else if (rand == 1) {
       this.fetchLovers()
-    } else {
+    } else if (rand == 2) {
       this.fetchGeneral()
+    } else if (rand == 3) {
+      this.fetchVillian()
+    } else {
+      this.fetchLake()
     }
   }
 
@@ -48,18 +53,27 @@ class Generator extends Component {
     .then(resp => resp.json())
     .then(char => {
       this.setState ({
-        message: `${char[0].name} loved ${char[1].name} most ardently but unfortunately our series could not explore their backstory.`,
+        message: `${char[0].name} loved ${char[1].name} most ardently but unfortunately our series could not explore their backstory further.`,
         generated: true
       })
     })
   }
+
+  fetchVillian= (ev) => {
+    let rand = [Math.floor(Math.random() * 5)]
+    this.setState ({
+        message: `${villian[rand]} is nowhere near as bad as Trump.`,
+        generated: true
+    })
+  }
+
 
   fetchBirth = (ev) => {
     fetch('https://last-airbender-api.herokuapp.com/api/v1/characters/random')
     .then(resp => resp.json())
     .then(char => {
       this.setState ({
-        message: `${char[0].name} was born in ${[Math.floor(Math.random() * 101)]} AG and is SUCH a ${sign[Math.floor(Math.random() * 13)]}.`,
+        message: `${char[0].name} was born in ${[Math.floor(Math.random() * 101)]} AG and is SUCH a ${sign[Math.floor(Math.random() * 12)]}.`,
         generated: true
       })
     })
@@ -75,6 +89,18 @@ class Generator extends Component {
       })
     })
   }
+
+  fetchLake() {
+    fetch('https://last-airbender-api.herokuapp.com/api/v1/characters/random')
+    .then(resp => resp.json())
+    .then(char => {
+      this.setState ({
+        message: `${char[0].name} is a happy resident of Ba Sing Se. Rumors about Lake Laogai is #FakeNews.`,
+        generated: true
+      })
+    })
+  }
+
 
   render() {
     return (
