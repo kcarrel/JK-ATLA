@@ -53,6 +53,21 @@ class Generator extends Component {
     })
   }
 
+  postTweet() {
+    fetch('http://localhost:3000/tweet', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        message: this.state.message
+      })
+    })
+    .then(resp => resp.json())
+    .then(response => console.log(response))
+  }
+
   fetchAction() {
     let rand = [Math.floor(Math.random() * 6)]
     let rands = [Math.floor(Math.random() * 2)]
@@ -69,8 +84,11 @@ class Generator extends Component {
       this.setState ({
         message: `${char[0].name} loved ${char[1].name} most ardently but unfortunately our series could not explore their backstory further.`,
         generated: true
+      }, () => {
+        this.postTweet()
       })
     })
+
   }
 
   fetchRecess = (ev) => {
