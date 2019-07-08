@@ -15,6 +15,9 @@ let bend = ['airbend', 'waterbend', 'firebend', 'earthbend', 'bloodbend', 'metal
 let item = ['poop', 'trash', 'waste', 'food scraps']
 let categories = ['fetchBirth', 'fetchLovers', 'fetchGeneral', 'fetchLake']
 let messages = []
+let benders = ['airbenders', 'waterbenders', 'firebenders', 'earthbenders', 'bloodbenders', 'metalbenders']
+let description = ['floaty', 'bubbly', 'firey', 'grounded', 'terrifying' , 'cool']
+let animal = ['sky bisons', 'koi', 'dragons', 'badgermoles', 'scary lot' , 'steely bois']
 let sign = ['Sagittaruis', 'Pisces', 'Capricorn', 'Aquarius', 'Scorpio', 'Libra', 'Cancer', 'Aries', 'Virgo', 'Leo', 'Gemini', 'Taurus']
 class Generator extends Component {
   constructor() {
@@ -27,7 +30,7 @@ class Generator extends Component {
 
   handleSubmit = (ev) => {
     ev.preventDefault()
-    let rand = [Math.floor(Math.random() * 8)]
+    let rand = [Math.floor(Math.random() * 9)]
     if (rand == 0) {
       this.fetchBirth()
     } else if (rand == 1) {
@@ -42,6 +45,8 @@ class Generator extends Component {
       this.fetchSinger()
     } else if (rand == 6) {
       this.fetchAction()
+    } else if (rand == 7) {
+      this.fetchPride()
     } else {
       this.fetchLake()
     }
@@ -68,15 +73,27 @@ class Generator extends Component {
     .then(response => console.log(response))
   }
 
+  fetchPride() {
+    let rand = [Math.floor(Math.random() * 6)]
+    this.setState ({
+      message: `Happy pride day to all you ${benders[rand]}, you ${description[rand]} ${animal[rand]} you.`,
+      generated: true
+    }, () => {
+      this.postTweet()
+    })
+  }
+
   fetchAction() {
     let rand = [Math.floor(Math.random() * 6)]
     let rands = [Math.floor(Math.random() * 2)]
     this.setState ({
         message: `In ${[Math.floor(Math.random() * 101)]} AG people would ${bend[rand]} ${item[rands]} away.`,
         generated: true
+    }, () => {
+      this.postTweet()
     })
-
   }
+
   fetchLovers = (ev) => {
     fetch('https://last-airbender-api.herokuapp.com/api/v1/characters/random?count=2')
     .then(resp => resp.json())
@@ -88,7 +105,6 @@ class Generator extends Component {
         this.postTweet()
       })
     })
-
   }
 
   fetchRecess = (ev) => {
@@ -96,6 +112,8 @@ class Generator extends Component {
     this.setState ({
         message: `Being unable to ${bend[rand]} is due to a recessive gene.`,
         generated: true
+    }, () => {
+      this.postTweet()
     })
   }
 
@@ -104,6 +122,8 @@ class Generator extends Component {
     this.setState ({
         message: `How horrible. ${villian[rand]} is nowhere near as bad as Trump.`,
         generated: true
+    }, () => {
+      this.postTweet()
     })
   }
 
@@ -115,6 +135,8 @@ class Generator extends Component {
       this.setState ({
         message: `${char[0].name} was born in ${[Math.floor(Math.random() * 101)]} AG and is SUCH a ${sign[Math.floor(Math.random() * 12)]}.`,
         generated: true
+      }, () => {
+        this.postTweet()
       })
     })
   }
@@ -127,6 +149,8 @@ class Generator extends Component {
       this.setState ({
         message: `${char[0].name} has a lovely singing voice - sounds quite a bit like ${celeb[rand]}.`,
         generated: true
+      }, () => {
+        this.postTweet()
       })
     })
   }
@@ -138,6 +162,8 @@ class Generator extends Component {
       this.setState ({
         message: `${char[0].name} does not think cactus juice is remotely good.`,
         generated: true
+      }, () => {
+        this.postTweet()
       })
     })
   }
@@ -149,6 +175,8 @@ class Generator extends Component {
       this.setState ({
         message: `${char[0].name} is a happy resident of Ba Sing Se. Rumors about Lake Laogai is #FakeNews.`,
         generated: true
+      }, () => {
+        this.postTweet()
       })
     })
   }
