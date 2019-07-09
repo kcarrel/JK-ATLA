@@ -129,7 +129,7 @@ class Generator extends Component {
     .then(resp => resp.json())
     .then(char => {
       this.setState ({
-        message: `${char[0].name} was secretly a ${bender[rand]}.`,
+        message: `${char[0].name} was secretly a ${benders[rand]}.`,
         generated: true
       }, () => {
         this.postTweet()
