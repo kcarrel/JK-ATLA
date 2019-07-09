@@ -32,7 +32,7 @@ class Generator extends Component {
 
   handleSubmit = (ev) => {
     ev.preventDefault()
-    let rand = [Math.floor(Math.random() * 11)]
+    let rand = [Math.floor(Math.random() * 12)]
     if (rand == 0) {
       this.fetchBirth()
     } else if (rand == 1) {
@@ -53,6 +53,8 @@ class Generator extends Component {
       this.fetchFamily()
     } else if (rand == 9) {
       this.fetchBender()
+    } else if (rand == 10) {
+      this.fetchBoulder()
     } else {
       this.fetchLake()
     }
@@ -193,6 +195,19 @@ class Generator extends Component {
     .then(char => {
       this.setState ({
         message: `${char[0].name} does not think cactus juice is remotely good.`,
+        generated: true
+      }, () => {
+        this.postTweet()
+      })
+    })
+  }
+
+  fetchBoulder() {
+    fetch('https://last-airbender-api.herokuapp.com/api/v1/characters/random')
+    .then(resp => resp.json())
+    .then(char => {
+      this.setState ({
+        message: `The Boulder would crumble against ${char[0].name} by a landslide.`,
         generated: true
       }, () => {
         this.postTweet()
