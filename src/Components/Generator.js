@@ -32,7 +32,7 @@ class Generator extends Component {
 
   handleSubmit = (ev) => {
     ev.preventDefault()
-    let rand = [Math.floor(Math.random() * 10)]
+    let rand = [Math.floor(Math.random() * 11)]
     if (rand == 0) {
       this.fetchBirth()
     } else if (rand == 1) {
@@ -227,7 +227,7 @@ class Generator extends Component {
               Alternate ATLA
           </Typography>
           <Typography className="username" style={{marginLeft: 3, fontSize: 14}}>
-              @JK_ATLA
+              @ALTALTA7
           </Typography>
           </CardContent>
 
