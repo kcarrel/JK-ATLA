@@ -59,7 +59,7 @@ class Generator extends Component {
   }
 
   postTweet() {
-    fetch('http://localhost:3000/tweet', {
+    fetch('https://alt-atla-be.herokuapp.com/tweet', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
