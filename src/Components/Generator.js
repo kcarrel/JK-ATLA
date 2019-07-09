@@ -30,7 +30,7 @@ class Generator extends Component {
 
   handleSubmit = (ev) => {
     ev.preventDefault()
-    let rand = [Math.floor(Math.random() * 9)]
+    let rand = [Math.floor(Math.random() * 10)]
     if (rand == 0) {
       this.fetchBirth()
     } else if (rand == 1) {
@@ -47,6 +47,10 @@ class Generator extends Component {
       this.fetchAction()
     } else if (rand == 7) {
       this.fetchPride()
+    } else if (rand == 8) {
+      this.fetchFamily()
+    } else if (rand == 9) {
+      this.fetchBender()
     } else {
       this.fetchLake()
     }
@@ -93,6 +97,18 @@ class Generator extends Component {
       this.postTweet()
     })
   }
+  fetchFamily() {
+    fetch('https://last-airbender-api.herokuapp.com/api/v1/characters/random?count=2')
+    .then(resp => resp.json())
+    .then(char => {
+      this.setState ({
+        message: `${char[0].name} is secretly part of ${char[1].name}'s family.`,
+        generated: true
+      }, () => {
+        this.postTweet()
+      })
+    })
+  }
 
   fetchLovers = (ev) => {
     fetch('https://last-airbender-api.herokuapp.com/api/v1/characters/random?count=2')
@@ -100,6 +116,20 @@ class Generator extends Component {
     .then(char => {
       this.setState ({
         message: `${char[0].name} loved ${char[1].name} most ardently but unfortunately our series could not explore their backstory further.`,
+        generated: true
+      }, () => {
+        this.postTweet()
+      })
+    })
+  }
+
+  fetchBender() {
+    let rand = [Math.floor(Math.random() * 6)]
+    fetch('https://last-airbender-api.herokuapp.com/api/v1/characters/random')
+    .then(resp => resp.json())
+    .then(char => {
+      this.setState ({
+        message: `${char[0].name} was secretly a ${bender[rand]}.`,
         generated: true
       }, () => {
         this.postTweet()
