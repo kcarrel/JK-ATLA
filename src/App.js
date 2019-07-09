@@ -14,6 +14,9 @@ class App extends Component {
         <p>
           Alternate ATLA Generator - JK edition
         </p>
+        <p>
+          What if Avatar the Last Airbender was created by people that constantly retconned weird plot points?
+        </p>
         <Generator></Generator>
       </header>
     </div>

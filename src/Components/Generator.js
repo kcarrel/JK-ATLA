@@ -15,6 +15,8 @@ let bend = ['airbend', 'waterbend', 'firebend', 'earthbend', 'bloodbend', 'metal
 let item = ['poop', 'trash', 'waste', 'food scraps']
 let categories = ['fetchBirth', 'fetchLovers', 'fetchGeneral', 'fetchLake']
 let messages = []
+let bender = ['airbender', 'waterbender', 'firebender', 'earthbender', 'bloodbender', 'metalbender']
+
 let benders = ['airbenders', 'waterbenders', 'firebenders', 'earthbenders', 'bloodbenders', 'metalbenders']
 let description = ['floaty', 'bubbly', 'firey', 'grounded', 'terrifying' , 'cool']
 let animal = ['sky bisons', 'koi', 'dragons', 'badgermoles', 'scary lot' , 'steely bois']
@@ -129,7 +131,7 @@ class Generator extends Component {
     .then(resp => resp.json())
     .then(char => {
       this.setState ({
-        message: `${char[0].name} was secretly a ${benders[rand]}.`,
+        message: `${char[0].name} was secretly a ${bender[rand]}.`,
         generated: true
       }, () => {
         this.postTweet()
@@ -235,6 +237,9 @@ class Generator extends Component {
             </Typography>
             <Button onClick={(ev) => this.handleSubmit(ev)}>
               Generate another!
+            </Button>
+            <Button target="_blank" href="https://twitter.com/ALTALTA7">
+              See your tweet!
             </Button>
           </CardContent>
 
