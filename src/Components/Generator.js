@@ -14,7 +14,7 @@ let bending = ['airbending', 'waterbending', 'firebending', 'earthbending', 'blo
 let bend = ['airbend', 'waterbend', 'firebend', 'earthbend', 'bloodbend', 'metalbend']
 let item = ['poop', 'trash', 'waste', 'food scraps']
 let categories = ['fetchBirth', 'fetchLovers', 'fetchGeneral', 'fetchLake']
-let messages = []
+let messages = ['']
 let bender = ['airbender', 'waterbender', 'firebender', 'earthbender', 'bloodbender', 'metalbender']
 
 let benders = ['airbenders', 'waterbenders', 'firebenders', 'earthbenders', 'bloodbenders', 'metalbenders']
@@ -269,8 +269,8 @@ class Generator extends Component {
               Generate another!
             </Button>
             <Button target="_blank" href="https://twitter.com/ALTALTA7">
-              See your tweet!
-            </Button>
+             See the tweets!
+           </Button>
           </CardContent>
 
       </Card> ) : (

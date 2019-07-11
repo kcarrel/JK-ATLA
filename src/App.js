@@ -11,13 +11,13 @@ class App extends Component {
     <div className="App">
       <header className="App-header">
         <img src={atla} alt="logo" />
-        <p>
+        <p className="title">
           Alternate ATLA Generator - JK edition
         </p>
-        <p>
+        <p className="description">
           What if Avatar the Last Airbender was created by people that constantly retconned weird plot points?
         </p>
-        <Generator></Generator>
+        <Generator className="generator"></Generator>
       </header>
     </div>
   );

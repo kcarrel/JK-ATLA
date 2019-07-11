@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background-color: black
+  background-color: #012840
 }
 
 .App-header {
@@ -14,13 +14,21 @@
   color: white;
 }
 
+.title {
+  font-size: 40x;
+}
+
+.description {
+  font-size: 20px;
+}
+
 .App-link {
   color: #61dafb;
 }
 
 .generator {
   width: 50vh;
-  height: 50px;
+  height: 75px;
   margin: auto
 }
 .avatar {
@@ -33,7 +41,10 @@
 .name {
   float: left;
   bottom: 0;
+}
 
+.twitterName {
+  font-size: 15px;
 }
 .username {
   float: left;
