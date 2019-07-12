@@ -8,15 +8,13 @@ import Card from '@material-ui/core/Card';
 
 import atla from '../atla.png';
 
-let celeb = ['Lizzo', 'Brittany Howard', 'Florence Welch', 'Bono', 'Elton John', 'Lady Gaga', 'Bon Iver', 'Lana Del Rey', 'Billie Eilish']
+let celeb = ['Lizzo', 'Brittany Howard', 'Florence Welch', 'Bono', 'Elton John', 'Lady Gaga', 'Bon Iver', 'Lana Del Rey', 'Billie Eilish', 'Tash Sultana', 'Taylor Swift', 'Post Malone', 'Rihanna']
 let villian = ['Fire Lord Ozai', 'Zaheer', 'Vaatu', 'Azula', 'Admiral Zhao', 'Amon', 'Kuvira', 'Combustion Man', 'Unalaq', 'Hama', 'Yakone']
 let bending = ['airbending', 'waterbending', 'firebending', 'earthbending', 'bloodbending']
 let bend = ['airbend', 'waterbend', 'firebend', 'earthbend', 'bloodbend', 'metalbend']
-let item = ['poop', 'trash', 'waste', 'food scraps']
-let categories = ['fetchBirth', 'fetchLovers', 'fetchGeneral', 'fetchLake']
-let messages = ['']
-let bender = ['airbender', 'waterbender', 'firebender', 'earthbender', 'bloodbender', 'metalbender']
-
+let item = ['human waste', 'trash', 'waste', 'food scraps', 'push doors that look like pull doors', 'taxes', 'tables with uneven legs', 'environmentally unfriendly packaging']
+let bender = ['an airbender', 'a waterbender', 'a firebender', 'an earthbender', 'a bloodbender', 'a metalbender']
+let randomMessage = ['Princess Yue and her storyline was perfectly handled in The Last Airbender.', 'I envisoned Aang being pronounced like it was in The Last Airbender.', 'All pronunciations in The Last Airbender are now canon.', 'Animated action always translates perfectly to CGI movie action. #TheLastAirbender']
 let benders = ['airbenders', 'waterbenders', 'firebenders', 'earthbenders', 'bloodbenders', 'metalbenders']
 let description = ['floaty', 'bubbly', 'firey', 'grounded', 'terrifying' , 'cool']
 let animal = ['sky bisons', 'koi', 'dragons', 'badgermoles', 'scary lot' , 'steely bois']
@@ -62,11 +60,6 @@ class Generator extends Component {
     }
   }
 
-  handleCategory(){
-    this.setState({
-      category: `${categories[Math.floor(Math.random() * 5)]}`
-    })
-  }
 
   postTweet() {
     fetch('https://alt-atla-be.herokuapp.com/tweet', {
@@ -95,7 +88,7 @@ class Generator extends Component {
 
   fetchAction() {
     let rand = [Math.floor(Math.random() * 6)]
-    let rands = [Math.floor(Math.random() * 2)]
+    let rands = [Math.floor(Math.random() * 9)]
     this.setState ({
         message: `In ${[Math.floor(Math.random() * 101)]} AG people would ${bend[rand]} ${item[rands]} away.`,
         generated: true
@@ -135,7 +128,7 @@ class Generator extends Component {
     .then(resp => resp.json())
     .then(char => {
       this.setState ({
-        message: `${char[0].name} was secretly a ${bender[rand]}.`,
+        message: `${char[0].name} was secretly ${bender[rand]}.`,
         generated: true
       }, () => {
         this.postTweet()
@@ -178,7 +171,7 @@ class Generator extends Component {
   }
 
   fetchSinger = (ev) => {
-    let rand = [Math.floor(Math.random() * 10)]
+    let rand = [Math.floor(Math.random() * 15)]
     fetch('https://last-airbender-api.herokuapp.com/api/v1/characters/random')
     .then(resp => resp.json())
     .then(char => {
