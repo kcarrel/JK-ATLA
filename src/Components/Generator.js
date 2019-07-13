@@ -257,7 +257,7 @@ class Generator extends Component {
   }
 
   fetchSinger = (ev) => {
-    let rand = [Math.floor(Math.random() * 15)]
+    let rand = [Math.floor(Math.random() * 14)]
     fetch('https://last-airbender-api.herokuapp.com/api/v1/characters/random')
     .then(resp => resp.json())
     .then(char => {
