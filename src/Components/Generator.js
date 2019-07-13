@@ -165,7 +165,7 @@ class Generator extends Component {
   }
 
   fetchVillianKid() {
-    let rand = [Math.floor(Math.random() * 13)]
+    let rand = [Math.floor(Math.random() * 12)]
     fetch('https://last-airbender-api.herokuapp.com/api/v1/characters/random')
     .then(resp => resp.json())
     .then(char => {
@@ -213,7 +213,7 @@ class Generator extends Component {
   }
 
   fetchVillian = (ev) => {
-    let rand = [Math.floor(Math.random() * 13)]
+    let rand = [Math.floor(Math.random() * 12)]
     this.setState ({
         message: `How horrible. ${villian[rand]} is nowhere near as bad as Trump.`,
         generated: true
